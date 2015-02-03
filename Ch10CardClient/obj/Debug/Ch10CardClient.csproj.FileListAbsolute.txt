@@ -1,0 +1,8 @@
+D:\project\Ch10CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.exe.config
+D:\project\Ch10CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.exe
+D:\project\Ch10CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.pdb
+D:\project\Ch10CardLib\Ch10CardClient\bin\Debug\Ch10CardLib.dll
+D:\project\Ch10CardLib\Ch10CardClient\bin\Debug\Ch10CardLib.pdb
+D:\project\Ch10CardLib\Ch10CardClient\obj\Debug\Ch10CardClient.csprojResolveAssemblyReference.cache
+D:\project\Ch10CardLib\Ch10CardClient\obj\Debug\Ch10CardClient.exe
+D:\project\Ch10CardLib\Ch10CardClient\obj\Debug\Ch10CardClient.pdb
