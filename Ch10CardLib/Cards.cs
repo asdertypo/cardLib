@@ -24,6 +24,11 @@ namespace Ch10CardLib
                 targetCards[i] = this[i];
             }
         }
+        public void CopyToEmpty(Cards targetCards) {
+            for (int i = 0; i < this.Count; i++) {
+                targetCards.Add(this[i]);
+            }
+        }
         public bool Contains(Card card) {
             return InnerList.Contains(card);
         }

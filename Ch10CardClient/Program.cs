@@ -23,10 +23,21 @@ namespace Ch10CardClient
                     Console.WriteLine();
             }
             Console.WriteLine("Club:" + myDeck.Count(Suit.Club));
-            Console.WriteLine("Club:" + myDeck.Count(Suit.Diamond));
-            Console.WriteLine("Club:" + myDeck.Count(Suit.Heart));
-            Console.WriteLine("Club:" + myDeck.Count(Suit.Spade));
-            Console.ReadKey();
+            Console.WriteLine("Diamond:" + myDeck.Count(Suit.Diamond));
+            Console.WriteLine("Heart:" + myDeck.Count(Suit.Heart));
+            Console.WriteLine("Spade:" + myDeck.Count(Suit.Spade));
+            Console.WriteLine();
+
+            ////copy test
+            //Cards test1 = new Cards();
+            //Cards test2 = new Cards();
+            //test1.Add(new Card((Suit)2, (Rank)12));
+            //test2.Add(new Card((Suit)1, (Rank)11));
+            //test1.CopyTo(test2);
+            //test1[0] = new Card((Suit)3, (Rank)10);
+            //Console.WriteLine("test1 value:{0}", test1[0].ToString());
+            //Console.WriteLine("test2 value:{0}", test2[0].ToString());
+            //Console.ReadKey();
         }
     }
 }
