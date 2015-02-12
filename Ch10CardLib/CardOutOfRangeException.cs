@@ -6,15 +6,22 @@ using System.Threading.Tasks;
 
 namespace Ch10CardLib
 {
-    class CardOutOfRangeException:Exception
-    {
-        private Cards deckContents;
+   public class CardOutOfRangeException : Exception
+   {
+      private Cards deckContents;
 
-        public Cards DeckContents {
-            get { return deckContents; }
-        }
-        public CardOutOfRangeException(Cards sourceDeckContents) : base("There are only 52 cards in the deck!") {
-            deckContents = sourceDeckContents;
-        }
-    }
+      public Cards DeckContents
+      {
+         get
+         {
+            return deckContents;
+         }
+      }
+
+      public CardOutOfRangeException(Cards sourceDeckContents)
+         : base("There are only 52 cards in the deck.")
+      {
+         deckContents = sourceDeckContents;
+      }
+   }
 }

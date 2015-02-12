@@ -5,63 +5,11 @@ using System.Text;
 
 namespace Ch10CardLib
 {
-    //public class Deck
-    //{
-    //    private Card[] cards;
-
-    //    public Deck()
-    //    {
-    //        //throw new System.NotImplementedException();
-    //        cards = new Card[52];
-    //        for (int i = 0; i < 4; i++)
-    //        {
-    //            for (int j = 1; j < 14; j++)
-    //            {
-    //                cards[13 * i + j - 1] = new Card((Suit)i, (Rank)j);
-    //            }
-    //        }
-    //    }
-
-    //    public Card GetCard(int cardNum)
-    //    {
-    //        //throw new System.NotImplementedException();
-    //        if (cardNum >= 0 && cardNum < 52)
-    //            return cards[cardNum];
-    //        else
-    //            throw (new System.ArgumentOutOfRangeException("cardNum", cardNum, "Value must be between 0 and 51."));
-    //    }
-
-    //    public void Shuffle()//洗牌
-    //    {
-    //        //throw new System.NotImplementedException();
-    //        Card[] newDest = new Card[52];
-    //        int[] point = new int[52];
-    //        for (int i = 0; i < 52; i++)
-    //            point[i] = i;
-    //        Random sourceGen = new Random();
-    //        for (int i = 0; i < 52; i++)
-    //        {
-    //            int destCard = 0;
-    //            destCard = sourceGen.Next(0, 52 - i);
-    //            newDest[i] = cards[point[destCard]];
-    //            for (int j = destCard; j < 51; j++)
-    //                point[j] = point[j + 1];
-    //        }
-    //        newDest.CopyTo(cards, 0);
-    //    }
-    //    public int Count(Suit newSuit)
-    //    {
-    //        int val = 0;
-    //        for (int i = 0; i < 52; i++)
-    //        {
-    //            if (cards[i].suit == newSuit)
-    //                val++;
-    //        }
-    //        return val;
-    //    }
-    //}
-    public class Deck
+    public delegate void LastCardDrawnHandler(Deck currrentDeck);
+    public class Deck : ICloneable
     {
+        public event LastCardDrawnHandler LastCardDrawn;
+
         private Cards cards = new Cards();
 
         public Deck()
@@ -74,37 +22,80 @@ namespace Ch10CardLib
                 }
             }
         }
+
+        private Deck(Cards newCards)
+        {
+            cards = newCards;
+        }
+
+        /// <summary>
+        /// Nondefault constructor. Allows aces to be set high.
+        /// </summary>
+        public Deck(bool isAceHigh)
+            : this()
+        {
+            Card.isAceHigh = isAceHigh;
+        }
+
+        /// <summary>
+        /// Nondefault constructor. Allows a trump suit to be used.
+        /// </summary>
+        public Deck(bool useTrumps, Suit trump)
+            : this()
+        {
+            Card.useTrumps = useTrumps;
+            Card.trump = trump;
+        }
+
+        /// <summary>
+        /// Nondefault constructor. Allows aces to be set high and a trump suit
+        /// to be used.
+        /// </summary>
+        public Deck(bool isAceHigh, bool useTrumps, Suit trump)
+            : this()
+        {
+            Card.isAceHigh = isAceHigh;
+            Card.useTrumps = useTrumps;
+            Card.trump = trump;
+        }
+
         public Card GetCard(int cardNum)
         {
-            if (cardNum >= 0 && cardNum < 52)
+            if (cardNum >= 0 && cardNum <= 51)
+            {
+                if ((cardNum == 51) && (LastCardDrawn != null))
+                    LastCardDrawn(this);
                 return cards[cardNum];
+            }
             else
-                throw (new System.ArgumentOutOfRangeException("cardNum", cardNum, "Value must be between 0 and 51."));
+                throw new CardOutOfRangeException(cards.Clone() as Cards);
         }
+
         public void Shuffle()
         {
             Cards newDeck = new Cards();
-            Cards temp = new Cards();
-            cards.CopyToEmpty(temp);
-            Random source = new Random();
-            while (temp.Count > 0)
+            bool[] assigned = new bool[52];
+            Random sourceGen = new Random();
+            for (int i = 0; i < 52; i++)
             {
-                int dest = 0;
-                dest = source.Next(0, temp.Count);
-                newDeck.Add(temp[dest]);
-                temp.RemoveAt(dest);
+                int sourceCard = 0;
+                bool foundCard = false;
+                while (foundCard == false)
+                {
+                    sourceCard = sourceGen.Next(52);
+                    if (assigned[sourceCard] == false)
+                        foundCard = true;
+                }
+                assigned[sourceCard] = true;
+                newDeck.Add(cards[sourceCard]);
             }
             newDeck.CopyTo(cards);
         }
-        public int Count(Suit newSuit)
+
+        public object Clone()
         {
-            int val = 0;
-            for (int i = 0; i < 52; i++)
-            {
-                if (cards[i].suit == newSuit)
-                    val++;
-            }
-            return val;
+            Deck newDeck = new Deck(cards.Clone() as Cards);
+            return newDeck;
         }
     }
 }

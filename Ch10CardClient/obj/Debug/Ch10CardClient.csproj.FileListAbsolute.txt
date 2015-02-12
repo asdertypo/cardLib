@@ -14,5 +14,3 @@ E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.exe
 E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.pdb
 E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardLib.dll
 E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardLib.pdb
-E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.exe.CodeAnalysisLog.xml
-E:\project\CardLib\Ch10CardClient\bin\Debug\Ch10CardClient.exe.lastcodeanalysissucceeded

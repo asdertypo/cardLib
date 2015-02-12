@@ -7,30 +7,29 @@ using System.Threading.Tasks;
 
 namespace Ch10CardLib
 {
-    public class Cards:CollectionBase
-    {
-        public void Add(Card newCard) {
-            List.Add(newCard);
-        }
-        public void Remove(Card oldCard) {
-            List.Remove(oldCard);
-        }
-        public Card this[int cardIndex] {
-            get { return (Card)List[cardIndex]; }
-            set { List[cardIndex] = value; }
-        }
-        public void CopyTo(Cards targetCards) {
-            for (int i = 0; i < this.Count; i++) {
-                targetCards[i] = this[i];
-            }
-        }
-        public void CopyToEmpty(Cards targetCards) {
-            for (int i = 0; i < this.Count; i++) {
-                targetCards.Add(this[i]);
-            }
-        }
-        public bool Contains(Card card) {
-            return InnerList.Contains(card);
-        }
-    }
+   public class Cards : List<Card>, ICloneable
+   {
+      /// <summary>
+      /// Utility method for copying card instances into another Cards
+      /// instance—used in Deck.Shuffle(). This implementation assumes that
+      /// source and target collections are the same size.
+      /// </summary>
+      public void CopyTo(Cards targetCards)
+      {
+         for (int index = 0; index < this.Count; index++)
+         {
+            targetCards[index] = this[index];
+         }
+      }
+
+      public object Clone()
+      {
+         Cards newCards = new Cards();
+         foreach (Card sourceCard in this)
+         {
+            newCards.Add((Card)sourceCard.Clone());
+         }
+         return newCards;
+      }
+   }
 }

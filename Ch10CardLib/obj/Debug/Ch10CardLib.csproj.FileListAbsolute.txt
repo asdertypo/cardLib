@@ -7,5 +7,4 @@ E:\project\CardLib\Ch10CardLib\bin\Debug\Ch10CardLib.dll
 E:\project\CardLib\Ch10CardLib\bin\Debug\Ch10CardLib.pdb
 E:\project\CardLib\Ch10CardLib\obj\Debug\Ch10CardLib.dll
 E:\project\CardLib\Ch10CardLib\obj\Debug\Ch10CardLib.pdb
-E:\project\CardLib\Ch10CardLib\bin\Debug\Ch10CardLib.dll.CodeAnalysisLog.xml
-E:\project\CardLib\Ch10CardLib\bin\Debug\Ch10CardLib.dll.lastcodeanalysissucceeded
+E:\project\CardLib\Ch10CardLib\obj\Debug\Ch10CardLib.csprojResolveAssemblyReference.cache
